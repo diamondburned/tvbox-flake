@@ -55,7 +55,8 @@
           text = ''
             if [[ $HOSTNAME == moguchan ]]; then
               echo "Deploying to the local system" >&2
-              nixos-rebuild switch
+              nixos-rebuild switch \
+                --flake .#moguchan
             else
               echo "Deploying to the remote system" >&2
               nixos-rebuild switch \
