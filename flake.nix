@@ -60,7 +60,7 @@
               echo "Deploying to the remote system" >&2
               nixos-rebuild switch \
                 --flake .#moguchan \
-                --target-host root@moguchan.lan
+                --target-host root@moguchan
             fi
           '';
           runtimeInputs = with pkgs; [

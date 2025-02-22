@@ -30,6 +30,7 @@ in
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
+    backupFileExtension = "bak";
     sharedModules = [
       {
         # The state version is required and should stay at the version you

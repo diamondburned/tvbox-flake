@@ -1,18 +1,29 @@
-{ ... }:
+{ pkgs, lib, ... }:
 
 {
-  programs.mpv = {
-    enable = true;
-    config = {
-      gpu-api = "auto";
-      gpu-context = "auto";
-      vo = "gpu";
-      # vo = "dmabuf-wayland";
-      hwdec = "auto-safe";
-      dither-depth = "auto";
-      # fbo-format = "rgba32f";
-      # scale = "lanczos";
-      script-opts = "ytdl_hook-ytdl_path=yt-dlp";
-    };
+  imports = [
+    ./jellyfin-mpv
+  ];
+
+  home.packages = with pkgs; [
+    steam
+    gnome-usage
+    mission-center
+
+    # GNOME junks.
+    gnomeExtensions.vitals
+    gnomeExtensions.caffeine
+    gnomeExtensions.gsconnect
+    gnomeExtensions.tailscale-qs
+  ];
+
+  pam.sessionVariables = {
+    NIXOS_OZONE_WL = "1";
+    QT_QPA_PLATFORM = "wayland";
+  };
+
+  systemd.user.sessionVariables = {
+    NIXOS_OZONE_WL = "1";
+    QT_QPA_PLATFORM = "wayland";
   };
 }
