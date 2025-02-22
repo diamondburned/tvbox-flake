@@ -1,0 +1,8 @@
+keys:
+  - &diamond F6928B0358386997646EA876D78C4471CE776659
+creation_rules:
+  - path_regex: secrets/[^/]+\.(yaml|json|env|nix)$
+    key_groups:
+    - pgp:
+      - *diamond
+      age: []
