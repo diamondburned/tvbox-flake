@@ -60,7 +60,7 @@
               echo "Deploying to the remote system" >&2
               nixos-rebuild switch \
                 --flake .#moguchan \
-                --target-host root@moguchan
+                --target-host root@moguchan.skate-gopher.ts.net
             fi
           '';
           runtimeInputs = with pkgs; [
@@ -73,7 +73,7 @@
         ssh = pkgs.writeShellApplication {
           name = "ssh";
           text = ''
-            ssh root@moguchan
+            ssh root@moguchan.skate-gopher.ts.net
           '';
           runtimeInputs = with pkgs; [
             openssh
