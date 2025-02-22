@@ -2,9 +2,9 @@
   description = "Nix flake for TV box";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
-    home-manager.url = "github:nix-community/home-manager/release-24.11";
+    home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     sops-nix.url = "github:Mic92/sops-nix";
@@ -68,6 +68,18 @@
           ];
           meta = {
             description = "Deploy the configuration to the target system";
+          };
+        };
+        ssh = pkgs.writeShellApplication {
+          name = "ssh";
+          text = ''
+            ssh root@moguchan
+          '';
+          runtimeInputs = with pkgs; [
+            openssh
+          ];
+          meta = {
+            description = "SSH into the target system";
           };
         };
       });
